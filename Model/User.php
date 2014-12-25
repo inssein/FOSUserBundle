@@ -27,16 +27,6 @@ abstract class User implements UserInterface, GroupableInterface
     /**
      * @var string
      */
-    protected $username;
-
-    /**
-     * @var string
-     */
-    protected $usernameCanonical;
-
-    /**
-     * @var string
-     */
     protected $email;
 
     /**
@@ -213,12 +203,7 @@ abstract class User implements UserInterface, GroupableInterface
 
     public function getUsername()
     {
-        return $this->username;
-    }
-
-    public function getUsernameCanonical()
-    {
-        return $this->usernameCanonical;
+        return $this->email;
     }
 
     public function getSalt()
