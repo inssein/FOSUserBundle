@@ -32,11 +32,6 @@ abstract class UserManager implements UserManagerInterface, UserProviderInterfac
     protected $encoderFactory;
     
     /**
-     * @var CanonicalizerInterface 
-     */
-    protected $usernameCanonicalizer;
-    
-    /**
      * @var CanonicalizerInterface
      */
     protected $emailCanonicalizer;
@@ -48,10 +43,9 @@ abstract class UserManager implements UserManagerInterface, UserProviderInterfac
      * @param CanonicalizerInterface  $usernameCanonicalizer
      * @param CanonicalizerInterface  $emailCanonicalizer
      */
-    public function __construct(EncoderFactoryInterface $encoderFactory, CanonicalizerInterface $usernameCanonicalizer, CanonicalizerInterface $emailCanonicalizer)
+    public function __construct(EncoderFactoryInterface $encoderFactory, CanonicalizerInterface $emailCanonicalizer)
     {
         $this->encoderFactory = $encoderFactory;
-        $this->usernameCanonicalizer = $usernameCanonicalizer;
         $this->emailCanonicalizer = $emailCanonicalizer;
     }
 
@@ -78,34 +72,6 @@ abstract class UserManager implements UserManagerInterface, UserProviderInterfac
     public function findUserByEmail($email)
     {
         return $this->findUserBy(array('emailCanonical' => $this->canonicalizeEmail($email)));
-    }
-
-    /**
-     * Finds a user by username
-     *
-     * @param string $username
-     *
-     * @return UserInterface
-     */
-    public function findUserByUsername($username)
-    {
-        return $this->findUserBy(array('usernameCanonical' => $this->canonicalizeUsername($username)));
-    }
-
-    /**
-     * Finds a user either by email, or username
-     *
-     * @param string $usernameOrEmail
-     *
-     * @return UserInterface
-     */
-    public function findUserByUsernameOrEmail($usernameOrEmail)
-    {
-        if (filter_var($usernameOrEmail, FILTER_VALIDATE_EMAIL)) {
-            return $this->findUserByEmail($usernameOrEmail);
-        }
-
-        return $this->findUserByUsername($usernameOrEmail);
     }
 
     /**
@@ -171,7 +137,7 @@ abstract class UserManager implements UserManagerInterface, UserProviderInterfac
     {
         trigger_error('Using the UserManager as user provider is deprecated. Use FOS\UserBundle\Security\UserProvider instead.', E_USER_DEPRECATED);
 
-        $user = $this->findUserByUsername($username);
+        $user = $this->findUserByEmail($username);
 
         if (!$user) {
             throw new UsernameNotFoundException(sprintf('No user with name "%s" was found.', $username));
@@ -185,7 +151,6 @@ abstract class UserManager implements UserManagerInterface, UserProviderInterfac
      */
     public function updateCanonicalFields(UserInterface $user)
     {
-        $user->setUsernameCanonical($this->canonicalizeUsername($user->getUsername()));
         $user->setEmailCanonical($this->canonicalizeEmail($user->getEmail()));
     }
 
