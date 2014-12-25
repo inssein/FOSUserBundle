@@ -37,7 +37,6 @@ class UserManipulator
     /**
      * Creates a user and returns it.
      *
-     * @param string  $username
      * @param string  $password
      * @param string  $email
      * @param Boolean $active
@@ -45,7 +44,7 @@ class UserManipulator
      *
      * @return \FOS\UserBundle\Model\UserInterface
      */
-    public function create($username, $password, $email, $active, $superadmin)
+    public function create($password, $email, $active, $superadmin)
     {
         $user = $this->userManager->createUser();
         $user->setEmail($email);
