@@ -3,8 +3,6 @@
 
     <mapped-superclass name="FOS\UserBundle\Model\User" indexed="true">
 
-        <field name="username" fieldName="username" type="string" index="true" />
-        <field name="usernameCanonical" fieldName="usernameCanonical" type="string" index="true" />
         <field name="email" fieldName="email" type="string" index="true" />
         <field name="emailCanonical" fieldName="emailCanonical" type="string" index="true" />
         <field name="enabled" fieldName="enabled" type="mixed" />
