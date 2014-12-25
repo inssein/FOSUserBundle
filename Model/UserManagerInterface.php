@@ -52,15 +52,6 @@ interface UserManagerInterface
     public function findUserBy(array $criteria);
 
     /**
-     * Find a user by its username.
-     *
-     * @param string $username
-     *
-     * @return UserInterface or null if user does not exist
-     */
-    public function findUserByUsername($username);
-
-    /**
      * Finds a user by its email.
      *
      * @param string $email
@@ -68,15 +59,6 @@ interface UserManagerInterface
      * @return UserInterface or null if user does not exist
      */
     public function findUserByEmail($email);
-
-    /**
-     * Finds a user by its username or email.
-     *
-     * @param string $usernameOrEmail
-     *
-     * @return UserInterface or null if user does not exist
-     */
-    public function findUserByUsernameOrEmail($usernameOrEmail);
 
     /**
      * Finds a user by its confirmationToken.
