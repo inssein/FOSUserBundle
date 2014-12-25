@@ -23,31 +23,6 @@ interface UserInterface extends AdvancedUserInterface, \Serializable
     const ROLE_SUPER_ADMIN = 'ROLE_SUPER_ADMIN';
 
     /**
-     * Sets the username.
-     *
-     * @param string $username
-     *
-     * @return self
-     */
-    public function setUsername($username);
-
-    /**
-     * Gets the canonical username in search and sort queries.
-     *
-     * @return string
-     */
-    public function getUsernameCanonical();
-
-    /**
-     * Sets the canonical username.
-     *
-     * @param string $usernameCanonical
-     *
-     * @return self
-     */
-    public function setUsernameCanonical($usernameCanonical);
-
-    /**
      * Gets email.
      *
      * @return string
