@@ -40,7 +40,6 @@ abstract class UserManager implements UserManagerInterface, UserProviderInterfac
      * Constructor.
      *
      * @param EncoderFactoryInterface $encoderFactory
-     * @param CanonicalizerInterface  $usernameCanonicalizer
      * @param CanonicalizerInterface  $emailCanonicalizer
      */
     public function __construct(EncoderFactoryInterface $encoderFactory, CanonicalizerInterface $emailCanonicalizer)
@@ -176,18 +175,6 @@ abstract class UserManager implements UserManagerInterface, UserProviderInterfac
     protected function canonicalizeEmail($email)
     {
         return $this->emailCanonicalizer->canonicalize($email);
-    }
-
-    /**
-     * Canonicalizes a username
-     *
-     * @param string $username
-     *
-     * @return string
-     */
-    protected function canonicalizeUsername($username)
-    {
-        return $this->usernameCanonicalizer->canonicalize($username);
     }
 
     protected function getEncoder(UserInterface $user)
