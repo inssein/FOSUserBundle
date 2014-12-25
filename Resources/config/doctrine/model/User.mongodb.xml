@@ -6,10 +6,6 @@
 
     <mapped-superclass name="FOS\UserBundle\Model\User" collection="fos_user_user">
 
-        <field name="username" fieldName="username" type="string" />
-
-        <field name="usernameCanonical" fieldName="usernameCanonical" type="string" />
-
         <field name="email" fieldName="email" type="string" />
 
         <field name="emailCanonical" fieldName="emailCanonical" type="string" />
