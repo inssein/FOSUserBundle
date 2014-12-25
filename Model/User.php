@@ -148,8 +148,6 @@ abstract class User implements UserInterface, GroupableInterface
         return serialize(array(
             $this->password,
             $this->salt,
-            $this->usernameCanonical,
-            $this->username,
             $this->expired,
             $this->locked,
             $this->credentialsExpired,
@@ -173,8 +171,6 @@ abstract class User implements UserInterface, GroupableInterface
         list(
             $this->password,
             $this->salt,
-            $this->usernameCanonical,
-            $this->username,
             $this->expired,
             $this->locked,
             $this->credentialsExpired,
@@ -349,20 +345,6 @@ abstract class User implements UserInterface, GroupableInterface
             unset($this->roles[$key]);
             $this->roles = array_values($this->roles);
         }
-
-        return $this;
-    }
-
-    public function setUsername($username)
-    {
-        $this->username = $username;
-
-        return $this;
-    }
-
-    public function setUsernameCanonical($usernameCanonical)
-    {
-        $this->usernameCanonical = $usernameCanonical;
 
         return $this;
     }
@@ -568,6 +550,6 @@ abstract class User implements UserInterface, GroupableInterface
 
     public function __toString()
     {
-        return (string) $this->getUsername();
+        return (string) $this->getEmail();
     }
 }
