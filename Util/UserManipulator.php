@@ -48,7 +48,6 @@ class UserManipulator
     public function create($username, $password, $email, $active, $superadmin)
     {
         $user = $this->userManager->createUser();
-        $user->setUsername($username);
         $user->setEmail($email);
         $user->setPlainPassword($password);
         $user->setEnabled((Boolean) $active);
@@ -170,7 +169,7 @@ class UserManipulator
      */
     private function findUserByUsernameOrThrowException($username)
     {
-        $user = $this->userManager->findUserByUsername($username);
+        $user = $this->userManager->findUserByEmail($username);
 
         if (!$user) {
             throw new \InvalidArgumentException(sprintf('User identified by "%s" username does not exist.', $username));
