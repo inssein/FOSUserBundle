@@ -41,7 +41,6 @@ class User extends BaseUser implements UserInterface, GroupableInterface
         return serialize(
             array(
                 $this->id,
-                $this->username,
                 $this->salt,
                 $this->password,
                 $this->expired,
@@ -66,7 +65,6 @@ class User extends BaseUser implements UserInterface, GroupableInterface
 
         list(
             $this->id,
-            $this->username,
             $this->salt,
             $this->password,
             $this->expired,
