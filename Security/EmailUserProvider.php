@@ -18,6 +18,6 @@ class EmailUserProvider extends UserProvider
      */
     protected function findUser($username)
     {
-        return $this->userManager->findUserByUsernameOrEmail($username);
+        return $this->userManager->findUserByEmail($username);
     }
 }
